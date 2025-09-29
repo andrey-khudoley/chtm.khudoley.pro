@@ -1,7 +1,7 @@
 import SettingsTable from "../../tables/neso_assistent_v1_settings.table";
 import { ValidationError } from "@app/errors";
-import { Debug } from "./lib/debug";
-import { initializeDebug } from "./lib/getLogLevel";
+import { Debug } from "../../lib/debug.lib";
+import { initializeDebug } from "../../lib/getLogLevel";
 
 // @shared-route
 export const getSettingsRoute = app.get('/', async (ctx, req) => {
