@@ -7,11 +7,10 @@
     "rootDir": ".",
     "baseUrl": ".",
     "paths": {
-      
       "/*": ["./*"],
       "@andrey-khudoley/*": ["./*"]
     },
-    "allowJs": false,
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
@@ -19,10 +18,8 @@
     "jsx": "react",
     "jsxFactory": "jsx",
     "jsxFragmentFactory": "jsx.Fragment",
-    "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "skipLibCheck": true,
-    "types": ["vue", "./templates/neso-db-assistent/web/v1/types/vue-modules.d.ts"]
+    "strict": false,
+    "noUncheckedIndexedAccess": false
   },
   "vueCompilerOptions": {
     "globalTypesPath": "./templates/neso-db-assistent/web/v1/types/vue.d.ts",
@@ -41,10 +38,6 @@
     "./node_modules/@app/types/globals.d.ts",
     "./node_modules/@app/types/modules.d.ts",
     "./node_modules/@app/ui/global-jsx.d.ts",
-    "./templates/neso-db-assistent/web/v1/types/vue.d.ts",
-    "./templates/neso-db-assistent/web/v1/types/vue-modules.d.ts"
-],
-  "references": [
-    
+    "./templates/neso-db-assistent/web/v1/types/vue.d.ts"
   ]
 }
