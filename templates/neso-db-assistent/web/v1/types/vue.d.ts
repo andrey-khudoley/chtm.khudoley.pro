@@ -137,5 +137,5 @@ export {};
 	function __VLS_functionalComponentArgsRest<T extends (...args: any) => any>(t: T): 2 extends Parameters<T>['length'] ? [any] : [];
 	function __VLS_asFunctionalElement<T>(tag: T, endTag?: T): (attrs: T & Record<string, unknown>) => void;
 	function __VLS_asFunctionalSlot<S>(slot: S): S extends () => infer R ? (props: {}) => R : NonNullable<S>;
-	function __VLS_tryAsConstant<T>(t: T): T;
+	function __VLS_tryAsConstant<const T>(t: T): T;
 }
