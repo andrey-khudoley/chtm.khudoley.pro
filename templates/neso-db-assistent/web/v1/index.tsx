@@ -1,4 +1,6 @@
 import { jsx } from "@app/html-jsx";
+import { Debug } from "./lib/debug";
+import { initializeDebug } from "./lib/getLogLevel";
 
 // Декларация типов для Vue файлов
 declare module "*.vue";
@@ -7,7 +9,11 @@ import SettingsPage from "./pages/SettingsPage.vue";
 import DefaultPage from "./pages/DefaultPage.vue";
 
 export const webV1Route = app.get('/', async (ctx, req) => {
+  await initializeDebug(ctx, "[NeSoAI/index]");
+  Debug.info(ctx, 'Запрос к веб-интерфейсу');
+
   const isSettings = req.query.settings === 'project';
+  Debug.info(ctx, `Отображение страницы: ${isSettings ? 'настройки' : 'по умолчанию'}`);
   
   return (
     <html>

@@ -1,10 +1,16 @@
 import Products from "../../tables/neso_assistent_v1_products.table";
+import { Debug } from "./lib/debug";
+import { initializeDebug } from "./lib/getLogLevel";
 
 // @shared-route
 export const postProductRoute = app.post('/', async (ctx, req) => {
+  await initializeDebug(ctx, "[NeSoAI/postProduct]");
+  Debug.info(ctx, 'Получен запрос на создание/обновление продукта');
+
   try {
     // Проверяем URL
     if (req.body?.data?.url !== "https://www.notion.so/1933c77e0c8b8049a266c1e76f36d768") {
+      Debug.warn(ctx, 'Получен запрос с невалидным URL');
       return { error: "Invalid URL" };
     }
 
@@ -14,6 +20,7 @@ export const postProductRoute = app.post('/', async (ctx, req) => {
     }
 
     // Извлекаем данные
+    Debug.info(ctx, 'Извлечение данных из Notion webhook');
     const pid = properties.ID?.formula?.string;
     const speaker = properties.Спикер?.select?.name;
     const manager = properties.Менеджер?.select?.name;
@@ -31,6 +38,7 @@ export const postProductRoute = app.post('/', async (ctx, req) => {
       currency = "RUB";
       priceValue = properties["Ввод RUB"]?.number;
     } else {
+      Debug.error(ctx, 'Некорректная или отсутствующая валюта', 'E_INVALID_CURRENCY');
       return { error: "Invalid or missing currency" };
     }
 
@@ -58,6 +66,7 @@ export const postProductRoute = app.post('/', async (ctx, req) => {
       }
     };
 
+    Debug.info(ctx, 'Валидация дат');
     try {
       validateDates(dateStartoffWork, dateFinishoffWork, "work period");
       validateDates(dateStartoffPr, dateFinishoffPr, "PR period");
@@ -68,6 +77,7 @@ export const postProductRoute = app.post('/', async (ctx, req) => {
 
     // Проверяем обязательное поле PID
     if (!pid) {
+      Debug.error(ctx, 'Отсутствует обязательное поле PID', 'E_MISSING_PID');
       return { error: "Missing required field: PID" };
     }
 
@@ -92,9 +102,13 @@ export const postProductRoute = app.post('/', async (ctx, req) => {
     let product;
     if (existingProduct) {
       product = await Products.update(ctx, { id: existingProduct.id, ...productData });
+      Debug.info(ctx, `Продукт обновлен: PID=${pid}`);
     } else {
       product = await Products.create(ctx, productData);
+      Debug.info(ctx, `Новый продукт создан: PID=${pid}`);
     }
+
+    Debug.info(ctx, 'Продукт успешно обработан');
 
     return { 
       success: true, 
@@ -103,6 +117,7 @@ export const postProductRoute = app.post('/', async (ctx, req) => {
     };
 
   } catch (error) {
+    Debug.error(ctx, `Внутренняя ошибка сервера: ${error instanceof Error ? error.message : String(error)}`, 'E_INTERNAL');
     return { error: "Internal server error", message: error instanceof Error ? error.message : String(error) };
   }
 });
