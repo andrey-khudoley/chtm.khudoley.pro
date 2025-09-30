@@ -8,11 +8,14 @@ export const postProductRoute = app.post('/', async (ctx, req) => {
   Debug.info(ctx, 'Получен запрос на создание/обновление продукта');
 
   try {
-    // Проверяем URL
-    if (req.body?.data?.url !== "https://www.notion.so/1933c77e0c8b8049a266c1e76f36d768") {
-      Debug.warn(ctx, 'Получен запрос с невалидным URL');
-      return { error: "Invalid URL" };
+    // Проверяем database_id
+    const databaseId = req.body?.data?.parent?.database_id;
+    if (databaseId !== "14d3c77e-0c8b-8114-b763-e545d90f0cc9") {
+      Debug.warn(ctx, `Получен запрос с невалидным database_id: ${databaseId}`);
+      return { error: "Invalid database_id" };
     }
+
+    Debug.info(ctx, 'Валидация database_id пройдена');
 
     const properties = req.body.data.properties;
     if (!properties) {
