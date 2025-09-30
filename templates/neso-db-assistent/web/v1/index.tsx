@@ -7,13 +7,27 @@ declare module "*.vue";
 
 import SettingsPage from "./pages/SettingsPage.vue";
 import DefaultPage from "./pages/DefaultPage.vue";
+import ProductsPage from "./pages/ProductsPage.vue";
+import CurrencyRatesPage from "./pages/CurrencyRatesPage.vue";
 
 export const webV1Route = app.get('/', async (ctx, req) => {
   await initializeDebug(ctx, "[NeSoAI/index]");
   Debug.info(ctx, 'Запрос к веб-интерфейсу');
 
+  const view = req.query.view as string | undefined;
   const isSettings = req.query.settings === 'project';
-  Debug.info(ctx, `Отображение страницы: ${isSettings ? 'настройки' : 'по умолчанию'}`);
+  
+  let pageName = 'по умолчанию';
+  if (isSettings) pageName = 'настройки';
+  else if (view === 'products') pageName = 'продукты';
+  else if (view === 'currency-rates') pageName = 'курсы валют';
+  
+  Debug.info(ctx, `Отображение страницы: ${pageName}`);
+  
+  let PageComponent = DefaultPage;
+  if (isSettings) PageComponent = SettingsPage;
+  else if (view === 'products') PageComponent = ProductsPage;
+  else if (view === 'currency-rates') PageComponent = CurrencyRatesPage;
   
   return (
     <html>
@@ -35,7 +49,7 @@ export const webV1Route = app.get('/', async (ctx, req) => {
         `}</style>
       </head>
       <body class="bg-gray-100 min-h-screen">
-        {isSettings ? <SettingsPage /> : <DefaultPage />}
+        <PageComponent />
       </body>
     </html>
   );
