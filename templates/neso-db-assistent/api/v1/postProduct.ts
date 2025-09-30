@@ -84,6 +84,23 @@ export const postProductRoute = app.post('/', async (ctx, req) => {
       return { error: "Missing required field: PID" };
     }
 
+    // Валидация формата PID (NA-A[число], где число от 1 до 9999)
+    const pidPattern = /^NA-A(\d+)$/;
+    const pidMatch = pid.match(pidPattern);
+    
+    if (!pidMatch) {
+      Debug.error(ctx, `Неверный формат PID: ${pid}. Ожидается формат NA-A[число], где число от 1 до 9999`, 'E_INVALID_PID_FORMAT');
+      return { error: "Invalid PID format. Expected format: NA-A[number], where number is from 1 to 9999" };
+    }
+    
+    const pidNumber = parseInt(pidMatch[1], 10);
+    if (pidNumber < 1 || pidNumber > 9999) {
+      Debug.error(ctx, `Неверный номер в PID: ${pid}. Номер должен быть от 1 до 9999`, 'E_INVALID_PID_NUMBER');
+      return { error: "Invalid PID number. Number must be between 1 and 9999" };
+    }
+    
+    Debug.info(ctx, `Валидация PID пройдена: ${pid}`);
+
     // Создаем или обновляем продукт
     const existingProduct = await Products.findOneBy(ctx, { pid });
     
