@@ -9,6 +9,7 @@ import SettingsPage from "./pages/SettingsPage.vue";
 import DefaultPage from "./pages/DefaultPage.vue";
 import ProductsPage from "./pages/ProductsPage.vue";
 import CurrencyRatesPage from "./pages/CurrencyRatesPage.vue";
+import TariffsPage from "./pages/TariffsPage.vue";
 
 export const webV1Route = app.get('/', async (ctx, req) => {
   await initializeDebug(ctx, "[NeSoAI/index]");
@@ -21,6 +22,7 @@ export const webV1Route = app.get('/', async (ctx, req) => {
   if (isSettings) pageName = 'настройки';
   else if (view === 'products') pageName = 'продукты';
   else if (view === 'currency-rates') pageName = 'курсы валют';
+  else if (view === 'tariffs') pageName = 'тарифы';
   
   Debug.info(ctx, `Отображение страницы: ${pageName}`);
   
@@ -28,6 +30,7 @@ export const webV1Route = app.get('/', async (ctx, req) => {
   if (isSettings) PageComponent = SettingsPage;
   else if (view === 'products') PageComponent = ProductsPage;
   else if (view === 'currency-rates') PageComponent = CurrencyRatesPage;
+  else if (view === 'tariffs') PageComponent = TariffsPage;
   
   return (
     <html>

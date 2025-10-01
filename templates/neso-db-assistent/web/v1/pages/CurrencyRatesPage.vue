@@ -5,8 +5,9 @@
         <div class="flex items-center justify-between mb-6">
           <h1 class="text-2xl font-bold text-gray-800">Курсы валют</h1>
           <a :href="webV1Route.url()" 
-             class="text-blue-500 hover:text-blue-600 transition-colors">
-            ← Назад
+             class="inline-flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors">
+            <span class="mr-2">←</span>
+            Назад
           </a>
         </div>
 
