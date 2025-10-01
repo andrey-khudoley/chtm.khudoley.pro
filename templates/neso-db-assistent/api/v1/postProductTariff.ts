@@ -106,23 +106,6 @@ export const postProductTariffRoute = app.post('/', async (ctx, req) => {
       };
     }
 
-    // Проверяем наличие всех необходимых курсов
-    const rubPrice = properties["Ввод RUB"]?.number;
-    const eurPrice = properties["Ввод EUR"]?.number;
-    const uahPrice = properties["Ввод UAH"]?.number;
-
-    if (rubPrice === null || rubPrice === undefined || 
-        eurPrice === null || eurPrice === undefined || 
-        uahPrice === null || uahPrice === undefined) {
-      Debug.error(ctx, 'Отсутствует хотя бы один из курсов валют (RUB, EUR, UAH)', 'E_MISSING_CURRENCY_RATES');
-      return { 
-        error: "Missing currency rates", 
-        details: "All three currency rates (RUB, EUR, UAH) must be provided" 
-      };
-    }
-
-    Debug.info(ctx, `Все курсы валют присутствуют: RUB=${rubPrice}, EUR=${eurPrice}, UAH=${uahPrice}`);
-
     // Валидация цены (не должна быть отрицательной)
     if (price === null || price === undefined) {
       Debug.error(ctx, `Отсутствует цена для валюты ${currency}`, 'E_MISSING_PRICE');
