@@ -25,6 +25,13 @@
           <span class="font-semibold text-gray-800">Тарифы продуктов</span>
           <span class="text-sm text-gray-600">Управление тарифами</span>
         </a>
+
+        <a :href="webV1Route.query({ view: 'discounts' }).url()"
+           class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex flex-col items-center gap-3 text-center group hover:scale-105">
+          <span class="text-3xl">🎯</span>
+          <span class="font-semibold text-gray-800">Скидки</span>
+          <span class="text-sm text-gray-600">Управление скидками</span>
+        </a>
         
         <a :href="webV1Route.query({ settings: 'project' }).url()" 
            class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex flex-col items-center gap-3 text-center group hover:scale-105 md:col-span-2 lg:col-span-1">
