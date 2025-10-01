@@ -62,3 +62,4 @@ export type TTemplatesNesoDbAssistentNesoAssistentV1ProductsZ72Row =
   typeof TTemplatesNesoDbAssistentNesoAssistentV1ProductsZ72.T
 export type TTemplatesNesoDbAssistentNesoAssistentV1ProductsZ72RowJson =
   typeof TTemplatesNesoDbAssistentNesoAssistentV1ProductsZ72.JsonT
+

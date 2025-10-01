@@ -1,4 +1,4 @@
-import Products from "../../tables/neso_assistent_v1_products.table";
+import Products from "../../tables/v1/products.table";
 import { Debug } from "../../lib/debug.lib";
 import { initializeDebug } from "../../lib/getLogLevel";
 

@@ -1,4 +1,4 @@
-import Discounts from "../../tables/neso_assistent_v1_discounts.table";
+import Discounts from "../../tables/v1/discounts.table";
 import { Debug } from "../../lib/debug.lib";
 import { initializeDebug } from "../../lib/getLogLevel";
 

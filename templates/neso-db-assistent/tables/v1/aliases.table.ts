@@ -39,3 +39,4 @@ export type TTemplatesNesoDbAssistentNesoAssistentV1AliasCCuRow =
   typeof TTemplatesNesoDbAssistentNesoAssistentV1AliasCCu.T
 export type TTemplatesNesoDbAssistentNesoAssistentV1AliasCCuRowJson =
   typeof TTemplatesNesoDbAssistentNesoAssistentV1AliasCCu.JsonT
+

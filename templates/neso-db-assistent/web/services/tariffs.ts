@@ -1,4 +1,4 @@
-import TariffsTable from "../../tables/neso_assistent_v1_tariffs.table";
+import TariffsTable from "../../tables/v1/tariffs.table";
 import { Debug } from "../../lib/debug.lib";
 import { initializeDebug } from "../../lib/getLogLevel";
 

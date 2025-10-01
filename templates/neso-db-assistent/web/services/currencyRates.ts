@@ -1,4 +1,4 @@
-import CurrencyRatesTable from "../../tables/neso_assistent_v1_currency_rates.table";
+import CurrencyRatesTable from "../../tables/v1/currency_rates.table";
 import { Debug } from "../../lib/debug.lib";
 import { initializeDebug } from "../../lib/getLogLevel";
 

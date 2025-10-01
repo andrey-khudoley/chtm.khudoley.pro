@@ -1,4 +1,4 @@
-import SettingsTable from "../../tables/neso_assistent_v1_settings.table";
+import SettingsTable from "../../tables/v1/settings.table";
 import { ValidationError } from "@app/errors";
 import { Debug } from "../../lib/debug.lib";
 import { initializeDebug } from "../../lib/getLogLevel";

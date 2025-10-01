@@ -26,3 +26,4 @@ export type TTemplatesNesoDbAssistentNesoAssistentV1CurrencyRatesH1VRow =
   typeof TTemplatesNesoDbAssistentNesoAssistentV1CurrencyRatesH1V.T
 export type TTemplatesNesoDbAssistentNesoAssistentV1CurrencyRatesH1VRowJson =
   typeof TTemplatesNesoDbAssistentNesoAssistentV1CurrencyRatesH1V.JsonT
+

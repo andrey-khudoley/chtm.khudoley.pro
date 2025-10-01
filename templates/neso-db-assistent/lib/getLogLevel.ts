@@ -1,5 +1,5 @@
 // @shared
-import SettingsTable from "../tables/neso_assistent_v1_settings.table";
+import SettingsTable from "../tables/v1/settings.table";
 import type { DebugLevel } from "./debug.lib";
 
 /**
