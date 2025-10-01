@@ -1,7 +1,7 @@
-import SettingsTable from "../../tables/v1/settings.table";
+import SettingsTable from "../../../tables/v1/settings.table";
 import { ValidationError } from "@app/errors";
-import { Debug } from "../../lib/debug.lib";
-import { initializeDebug } from "../../lib/getLogLevel";
+import { Debug } from "../../../lib/debug.lib";
+import { initializeDebug } from "../../../lib/getLogLevel";
 
 // @shared-route
 export const getSettingsRoute = app.get('/', async (ctx, req) => {
@@ -63,3 +63,4 @@ export const updateSettingsRoute = app.post('/', async (ctx, req) => {
     return updatedSettings;
   }
 });
+

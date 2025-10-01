@@ -1,6 +1,6 @@
-import CurrencyRatesTable from "../../tables/v1/currency_rates.table";
-import { Debug } from "../../lib/debug.lib";
-import { initializeDebug } from "../../lib/getLogLevel";
+import CurrencyRatesTable from "../../../tables/v1/currency_rates.table";
+import { Debug } from "../../../lib/debug.lib";
+import { initializeDebug } from "../../../lib/getLogLevel";
 
 // @shared-route
 export const getCurrencyRatesRoute = app.get('/', async (ctx, req) => {
@@ -19,3 +19,4 @@ export const getCurrencyRatesRoute = app.get('/', async (ctx, req) => {
     throw error;
   }
 });
+

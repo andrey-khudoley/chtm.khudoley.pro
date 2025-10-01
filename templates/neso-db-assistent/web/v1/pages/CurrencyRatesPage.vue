@@ -51,7 +51,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { webV1Route } from "../index";
-import { getCurrencyRatesRoute } from "../../services/currencyRates";
+import { getCurrencyRatesRoute } from "../handlers/currencyRates";
 
 const rates = ref([]);
 const loading = ref(true);

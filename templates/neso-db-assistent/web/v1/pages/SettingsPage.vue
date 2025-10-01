@@ -39,7 +39,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { webV1Route } from "../index";
-import { getSettingsRoute, updateSettingsRoute } from "../../services/settings";
+import { getSettingsRoute, updateSettingsRoute } from "../handlers/settings";
 
 const selectedLogLevel = ref('info');
 const message = ref('');
