@@ -4,7 +4,7 @@ import { initializeDebug } from "../../lib/getLogLevel";
 
 // @shared-route
 export const getDiscountsRoute = app.get('/', async (ctx) => {
-  await initializeDebug(ctx, "[NeSoAI/web/api/discounts]");
+  await initializeDebug(ctx, "[NeSoAI/web/services/discounts]");
   Debug.info(ctx, 'Запрос списка скидок для веб-интерфейса');
 
   try {
