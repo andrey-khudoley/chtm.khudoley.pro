@@ -1,11 +1,11 @@
-import ProductTariffs from "../../tables/neso_assistent_v1_product_tariffs.table";
+import Tariffs from "../../tables/neso_assistent_v1_tariffs.table";
 import Products from "../../tables/neso_assistent_v1_products.table";
 import { Debug } from "../../lib/debug.lib";
 import { initializeDebug } from "../../lib/getLogLevel";
 
 // @shared-route
-export const postProductTariffRoute = app.post('/', async (ctx, req) => {
-  await initializeDebug(ctx, "[NeSoAI/postProductTariff]");
+export const postTariffRoute = app.post('/', async (ctx, req) => {
+  await initializeDebug(ctx, "[NeSoAI/postTariff]");
   Debug.info(ctx, 'Получен запрос на создание/обновление тарифа продукта');
 
   try {
@@ -126,7 +126,7 @@ export const postProductTariffRoute = app.post('/', async (ctx, req) => {
     Debug.info(ctx, `Валидация цены пройдена: ${price} ${currency}`);
 
     // Создаем или обновляем тариф
-    const existingTariff = await ProductTariffs.findOneBy(ctx, { tid });
+    const existingTariff = await Tariffs.findOneBy(ctx, { tid });
     
     const tariffData = {
       tid,
@@ -137,13 +137,13 @@ export const postProductTariffRoute = app.post('/', async (ctx, req) => {
 
     let tariff;
     if (existingTariff) {
-      tariff = await ProductTariffs.update(ctx, { 
+      tariff = await Tariffs.update(ctx, { 
         id: existingTariff.id, 
         ...tariffData 
       });
       Debug.info(ctx, `Тариф обновлен: TID=${tid}, Name=${name}, PID=${pid}, Price=${price}`);
     } else {
-      tariff = await ProductTariffs.create(ctx, tariffData);
+      tariff = await Tariffs.create(ctx, tariffData);
       Debug.info(ctx, `Новый тариф создан: TID=${tid}, Name=${name}, PID=${pid}, Price=${price}`);
     }
 
