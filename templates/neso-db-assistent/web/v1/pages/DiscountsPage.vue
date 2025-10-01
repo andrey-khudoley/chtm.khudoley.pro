@@ -51,7 +51,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { webV1Route } from "../index";
-import { getDiscountsRoute } from "../handlers/discounts";
+import { getDiscountsRoute } from "../handlers/get-discounts.api";
 
 const discounts = ref([]);
 const loading = ref(true);

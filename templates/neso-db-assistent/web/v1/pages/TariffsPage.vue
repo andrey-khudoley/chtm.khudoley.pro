@@ -51,7 +51,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { webV1Route } from "../index";
-import { getTariffsRoute } from "../handlers/tariffs";
+import { getTariffsRoute } from "../handlers/get-tariffs.api";
 
 const tariffs = ref([]);
 const loading = ref(true);

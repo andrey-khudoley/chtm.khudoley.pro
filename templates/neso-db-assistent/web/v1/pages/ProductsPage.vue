@@ -58,7 +58,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { webV1Route } from "../index";
-import { getProductsRoute } from "../handlers/products";
+import { getProductsRoute } from "../handlers/get-products.api";
 
 const products = ref([]);
 const loading = ref(true);
