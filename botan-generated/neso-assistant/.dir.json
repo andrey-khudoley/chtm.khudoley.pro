@@ -1,0 +1,6 @@
+{
+  "name": "Assistant service",
+  "params": {
+    "startWorkspaceAppearance": "ai"
+  }
+}
