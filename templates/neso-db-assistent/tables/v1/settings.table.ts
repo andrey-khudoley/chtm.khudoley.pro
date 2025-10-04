@@ -17,4 +17,3 @@ export type TTemplatesNesoDbAssistentNesoAssistentV1Settings4NuRow =
   typeof TTemplatesNesoDbAssistentNesoAssistentV1Settings4Nu.T
 export type TTemplatesNesoDbAssistentNesoAssistentV1Settings4NuRowJson =
   typeof TTemplatesNesoDbAssistentNesoAssistentV1Settings4Nu.JsonT
-
