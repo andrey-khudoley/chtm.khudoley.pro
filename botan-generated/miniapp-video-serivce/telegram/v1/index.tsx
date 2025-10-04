@@ -4,9 +4,11 @@ import ServiceSettingsPage from './pages/serviceSettings.page.vue';
 import SettingsTable from "../../tables/v1/settings.table";
 import { Debug } from "../../lib/debug.lib";
 import { initDebug } from "../../lib/debug.repo";
+import { requireRealUser } from "@app/auth";
 
 export const indexRoute = app.get('/', async (ctx, req) => {
   await initDebug(ctx, 'telegram/v1/index');
+  requireRealUser(ctx);
   Debug.info(ctx, 'Загрузка главной страницы Telegram miniapp v1');
   
   try {
@@ -17,6 +19,7 @@ export const indexRoute = app.get('/', async (ctx, req) => {
           <title>Miniapp Video Service</title>
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
           <script src="https://telegram.org/js/telegram-web-app.js"></script>
+          <link href="/s/static/lib/fontawesome/6.7.2/css/all.min.css" rel="stylesheet" />
           <script src="/s/metric/clarity.js"></script>
           <script>{`
             // Инициализация Telegram WebApp
@@ -39,6 +42,7 @@ export const indexRoute = app.get('/', async (ctx, req) => {
 
 export const serviceSettingsRoute = app.get('/settings', async (ctx, req) => {
   await initDebug(ctx, 'telegram/v1/index');
+  requireRealUser(ctx);
   Debug.info(ctx, 'Загрузка страницы настроек сервиса Telegram miniapp');
   
   try {
@@ -49,6 +53,7 @@ export const serviceSettingsRoute = app.get('/settings', async (ctx, req) => {
           <title>Настройки - Miniapp Video Service</title>
           <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
           <script src="https://telegram.org/js/telegram-web-app.js"></script>
+          <link href="/s/static/lib/fontawesome/6.7.2/css/all.min.css" rel="stylesheet" />
           <script src="/s/metric/clarity.js"></script>
           <script>{`
             // Инициализация Telegram WebApp
@@ -72,6 +77,7 @@ export const serviceSettingsRoute = app.get('/settings', async (ctx, req) => {
 // @shared-route
 export const getSettingsRoute = app.get('/api/settings', async (ctx, req) => {
   await initDebug(ctx, 'telegram/v1/index/api');
+  requireRealUser(ctx);
   Debug.info(ctx, 'API Telegram: Получение настроек');
   
   try {
@@ -96,6 +102,7 @@ export const getSettingsRoute = app.get('/api/settings', async (ctx, req) => {
 // @shared-route
 export const updateSettingsRoute = app.post('/api/settings', async (ctx, req) => {
   await initDebug(ctx, 'telegram/v1/index/api');
+  requireRealUser(ctx);
   Debug.info(ctx, 'API Telegram: Обновление настроек');
   
   try {

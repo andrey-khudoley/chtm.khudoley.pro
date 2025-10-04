@@ -1,23 +1,38 @@
 <template>
   <div class="container">
-    <div class="header">
-      <div class="icon">🎬</div>
-      <h1 class="title">Miniapp Video Service</h1>
-      <p class="status">В разработке</p>
+    <div class="user-info">
+      <div class="user-avatar">
+        <i class="fas fa-user-circle"></i>
+      </div>
+      <div class="user-details">
+        <span class="user-name">{{ ctx.user.displayName }}</span>
+        <button @click="handleLogout" class="logout-btn">Выйти</button>
+      </div>
     </div>
     
+    <h1 class="title">Miniapp Video Service</h1>
+    <p class="status">В разработке</p>
+    
     <nav class="navigation">
-      <a :href="serviceSettingsRoute.url()" class="nav-item">
-        <span class="nav-icon">⚙️</span>
-        <span class="nav-text">Настройки сервиса</span>
-        <span class="nav-arrow">›</span>
-      </a>
+      <a :href="serviceSettingsRoute.url()" class="link">⚙️ Настройки сервиса</a>
     </nav>
   </div>
 </template>
 
 <script setup>
 import { serviceSettingsRoute } from './index';
+
+async function handleLogout() {
+  try {
+    await fetch('/s/auth/sign-out', {
+      method: 'POST',
+      credentials: 'include'
+    });
+    window.location.href = '/';
+  } catch (error) {
+    console.error('Ошибка при выходе:', error);
+  }
+}
 </script>
 
 <style scoped>
@@ -59,7 +74,7 @@ import { serviceSettingsRoute } from './index';
 }
 
 .title {
-  font-size: 1.75rem;
+  font-size: 2rem;
   font-weight: 700;
   text-align: center;
   margin-bottom: 0.5rem;
@@ -109,6 +124,58 @@ import { serviceSettingsRoute } from './index';
   color: var(--tg-theme-hint-color, #999999);
 }
 
+.user-info {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--tg-theme-secondary-bg-color, rgba(255, 255, 255, 0.1));
+  padding: 8px 14px;
+  border-radius: 50px;
+  border: 1px solid var(--tg-theme-hint-color, rgba(255, 255, 255, 0.2));
+}
+
+.user-avatar {
+  font-size: 1.75rem;
+  color: var(--tg-theme-button-color, #3390ec);
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.user-name {
+  color: var(--tg-theme-text-color, #000000);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.logout-btn {
+  background: var(--tg-theme-button-color, #3390ec);
+  border: none;
+  color: var(--tg-theme-button-text-color, #ffffff);
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.logout-btn:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+.logout-btn:active {
+  transform: scale(0.98);
+}
+
 @media (prefers-color-scheme: dark) {
   .container {
     background: #000000;
@@ -122,6 +189,38 @@ import { serviceSettingsRoute } from './index';
   .nav-item {
     background: #1a1a1a;
     color: #ffffff;
+  }
+
+  .user-info {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .user-avatar {
+    color: #3390ec;
+  }
+
+  .user-name {
+    color: #ffffff;
+  }
+
+  .logout-btn {
+    background: #3390ec;
+    color: #ffffff;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-info {
+    position: static;
+    margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+  
+  .title {
+    font-size: 1.75rem;
   }
 }
 </style>

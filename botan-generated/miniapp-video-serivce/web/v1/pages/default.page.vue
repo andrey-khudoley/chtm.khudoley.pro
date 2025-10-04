@@ -1,7 +1,18 @@
 <template>
   <div class="container">
+    <div class="user-info">
+      <div class="user-avatar">
+        <i class="fas fa-user-circle"></i>
+      </div>
+      <div class="user-details">
+        <span class="user-name">{{ ctx.user.displayName }}</span>
+        <button @click="handleLogout" class="logout-btn">Выйти</button>
+      </div>
+    </div>
+    
     <h1 class="title">Miniapp Video Service</h1>
     <p class="status">В разработке</p>
+    
     <nav class="navigation">
       <a :href="serviceSettingsRoute.url()" class="link">⚙️ Настройки сервиса</a>
     </nav>
@@ -10,6 +21,18 @@
 
 <script setup>
 import { serviceSettingsRoute } from './index';
+
+async function handleLogout() {
+  try {
+    await fetch('/s/auth/sign-out', {
+      method: 'POST',
+      credentials: 'include'
+    });
+    window.location.href = '/';
+  } catch (error) {
+    console.error('Ошибка при выходе:', error);
+  }
+}
 </script>
 
 <style scoped>
@@ -28,6 +51,59 @@ import { serviceSettingsRoute } from './index';
   padding: 20px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.user-info {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 10px 16px;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.user-avatar {
+  font-size: 2rem;
+  color: white;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-start;
+}
+
+.user-name {
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.logout-btn {
+  background: rgba(255, 255, 255, 0.3);
+  border: none;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.logout-btn:active {
+  transform: scale(0.98);
 }
 
 .title {
@@ -72,6 +148,14 @@ import { serviceSettingsRoute } from './index';
 }
 
 @media (max-width: 768px) {
+  .user-info {
+    position: static;
+    margin-bottom: 2rem;
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+  
   .title {
     font-size: 2rem;
   }
