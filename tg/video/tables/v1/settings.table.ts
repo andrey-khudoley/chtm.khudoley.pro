@@ -1,8 +1,8 @@
 // This file is auto-generated via createOrUpdateHeapTableFile API and should not be edited manually
 import { Heap } from '@app/heap'
 
-export const TBotanGeneratedMiniappVideoSerivceMiniappVideoV1SettingsUmF = Heap.Table(
-  't_botan-generated_miniapp-video-serivce_miniapp_video_v1_settings_UmF',
+export const TTgVideoV1SettingsTable = Heap.Table(
+  't_tg_video_v1_settings_nDil',
   {
     serviceName: Heap.Optional(
       Heap.String({ customMeta: { title: 'Название сервиса' }, searchable: { langs: ['ru', 'en'], embeddings: false } }),
@@ -13,13 +13,16 @@ export const TBotanGeneratedMiniappVideoSerivceMiniappVideoV1SettingsUmF = Heap.
         searchable: { langs: ['ru', 'en'], embeddings: false },
       }),
     ),
+    videoCounter: Heap.Optional(
+      Heap.Number({
+        customMeta: { title: 'Счётчик видео' },
+      }),
+    ),
   },
   { customMeta: { title: 'Настройки сервиса Miniapp Video v1', description: 'Настройки сервиса Miniapp Video v1' } },
 )
 
-export default TBotanGeneratedMiniappVideoSerivceMiniappVideoV1SettingsUmF
+export default TTgVideoV1SettingsTable
 
-export type TBotanGeneratedMiniappVideoSerivceMiniappVideoV1SettingsUmFRow =
-  typeof TBotanGeneratedMiniappVideoSerivceMiniappVideoV1SettingsUmF.T
-export type TBotanGeneratedMiniappVideoSerivceMiniappVideoV1SettingsUmFRowJson =
-  typeof TBotanGeneratedMiniappVideoSerivceMiniappVideoV1SettingsUmF.JsonT
+export type TTgVideoV1SettingsTableRow = typeof TTgVideoV1SettingsTable.T
+export type TTgVideoV1SettingsTableRowJson = typeof TTgVideoV1SettingsTable.JsonT

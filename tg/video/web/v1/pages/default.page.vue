@@ -11,16 +11,47 @@
     </div>
     
     <h1 class="title">Miniapp Video Service</h1>
-    <p class="status">В разработке</p>
+    <p class="status">Сервис для управления видео</p>
     
     <nav class="navigation">
-      <a :href="serviceSettingsRoute.url()" class="link">⚙️ Настройки сервиса</a>
+      <a :href="addVideoRoute.url()" class="nav-card add">
+        <div class="nav-icon">
+          <i class="fas fa-plus-circle"></i>
+        </div>
+        <div class="nav-content">
+          <h3>Добавить видео</h3>
+          <p>Загрузите новое видео</p>
+        </div>
+        <i class="fas fa-chevron-right nav-arrow"></i>
+      </a>
+      
+      <a :href="videoListRoute.url()" class="nav-card list">
+        <div class="nav-icon">
+          <i class="fas fa-video"></i>
+        </div>
+        <div class="nav-content">
+          <h3>Мои видео</h3>
+          <p>Просмотр и управление</p>
+        </div>
+        <i class="fas fa-chevron-right nav-arrow"></i>
+      </a>
+      
+      <a :href="serviceSettingsRoute.url()" class="nav-card settings">
+        <div class="nav-icon">
+          <i class="fas fa-cog"></i>
+        </div>
+        <div class="nav-content">
+          <h3>Настройки</h3>
+          <p>Конфигурация сервиса</p>
+        </div>
+        <i class="fas fa-chevron-right nav-arrow"></i>
+      </a>
     </nav>
   </div>
 </template>
 
 <script setup>
-import { serviceSettingsRoute } from './index';
+import { serviceSettingsRoute, addVideoRoute, videoListRoute } from '../index';
 
 async function handleLogout() {
   try {
@@ -111,40 +142,83 @@ async function handleLogout() {
   font-weight: 700;
   color: white;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .status {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   color: rgba(255, 255, 255, 0.9);
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .navigation {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  margin-top: 2rem;
+  width: 100%;
+  max-width: 600px;
 }
 
-.link {
-  padding: 0.75rem 1.5rem;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+.nav-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
   text-decoration: none;
-  border-radius: 8px;
-  font-size: 1rem;
+  border-radius: 16px;
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.link:hover {
-  background: rgba(255, 255, 255, 0.3);
+.nav-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.nav-card:active {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.nav-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.nav-card.add .nav-icon {
+  color: #10b981;
+}
+
+.nav-card.list .nav-icon {
+  color: #667eea;
+}
+
+.nav-card.settings .nav-icon {
+  color: #f59e0b;
+}
+
+.nav-content {
+  flex: 1;
+}
+
+.nav-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 0.25rem;
+}
+
+.nav-content p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.nav-arrow {
+  font-size: 1.25rem;
+  color: #ccc;
+  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
@@ -161,7 +235,23 @@ async function handleLogout() {
   }
   
   .status {
-    font-size: 1.25rem;
+    font-size: 1rem;
+  }
+  
+  .nav-card {
+    padding: 1.25rem;
+  }
+  
+  .nav-icon {
+    font-size: 2rem;
+  }
+  
+  .nav-content h3 {
+    font-size: 1.1rem;
+  }
+  
+  .nav-content p {
+    font-size: 0.85rem;
   }
 }
 </style>

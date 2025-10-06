@@ -51,7 +51,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { getSettingsRoute, updateSettingsRoute, indexRoute } from './index';
+import { getSettingsRoute, updateSettingsRoute, indexRoute } from '../index';
 
 const form = ref({
   serviceName: '',
