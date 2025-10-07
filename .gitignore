@@ -9,8 +9,6 @@ desktop.ini
 *.swp
 *.swo
 *~
-.workspace.json
-.dir.json
 
 # Временные файлы
 *.tmp
@@ -23,9 +21,6 @@ _prod/
 
 # Node modules
 node_modules/
-
-# Файл проекта
-package.json
 
 # Другие системные файлы
 *.pid
