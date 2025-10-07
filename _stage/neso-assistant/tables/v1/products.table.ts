@@ -1,8 +1,7 @@
-// This file is auto-generated via createOrUpdateHeapTableFile API and should not be edited manually
 import { Heap } from '@app/heap'
 
-export const TTemplatesNesoDbAssistentV1ProductsCu3Y = Heap.Table(
-  't_templates_neso-db-assistent_v1_products_Cu3Y',
+export const NesoAssistentProducts = Heap.Table(
+  'neso_assistent_products_alpha2',
   {
     pid: Heap.Optional(
       Heap.String({ customMeta: { title: 'Product ID' }, searchable: { langs: ['ru', 'en'], embeddings: true } }),
@@ -56,9 +55,9 @@ export const TTemplatesNesoDbAssistentV1ProductsCu3Y = Heap.Table(
   { customMeta: { title: 'Neso Assistant Products', description: 'Neso Assistant Products' } },
 )
 
-export default TTemplatesNesoDbAssistentV1ProductsCu3Y
+export default NesoAssistentProducts
 
-export type TTemplatesNesoDbAssistentV1ProductsUniqueRow =
-  typeof TTemplatesNesoDbAssistentV1ProductsCu3Y.T
-export type TTemplatesNesoDbAssistentV1ProductsUniqueRowJson =
-  typeof TTemplatesNesoDbAssistentV1ProductsCu3Y.JsonT
+export type NesoAssistentProductsRow =
+  typeof NesoAssistentProducts.T
+export type NesoAssistentProductsRowJson =
+  typeof NesoAssistentProducts.JsonT

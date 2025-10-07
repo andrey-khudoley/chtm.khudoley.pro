@@ -1,8 +1,7 @@
-// This file is auto-generated via createOrUpdateHeapTableFile API and should not be edited manually
 import { Heap } from '@app/heap'
 
-export const TTemplatesNesoDbAssistentV1AliasesrAmg = Heap.Table(
-  't_templates_neso-db-assistent_v1_aliases_rAmg',
+export const NesoAssistentAliases = Heap.Table(
+  'neso_assistent_aliases_alpha2',
   {
     alias_norm: Heap.Optional(
       Heap.String({
@@ -33,10 +32,9 @@ export const TTemplatesNesoDbAssistentV1AliasesrAmg = Heap.Table(
   { customMeta: { title: 'Neso Assistant Aliases', description: 'Neso Assistant Aliases' } },
 )
 
-export default TTemplatesNesoDbAssistentV1AliasesrAmg
+export default NesoAssistentAliases
 
-export type TTemplatesNesoDbAssistentV1AliasesRow =
-  typeof TTemplatesNesoDbAssistentV1AliasesrAmg.T
-export type TTemplatesNesoDbAssistentV1AliasesRowJson =
-  typeof TTemplatesNesoDbAssistentV1AliasesrAmg.JsonT
-
+export type NesoAssistentAliasesRow =
+  typeof NesoAssistentAliases.T
+export type NesoAssistentAliasesRowJson =
+  typeof NesoAssistentAliases.JsonT

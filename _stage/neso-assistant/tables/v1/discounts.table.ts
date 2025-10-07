@@ -1,8 +1,7 @@
-// This file is auto-generated via createOrUpdateHeapTableFile API and should not be edited manually
 import { Heap } from '@app/heap'
 
-export const TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1DiscountsLBmF = Heap.Table(
-  't_templates_neso-db-assistent_t_templates_neso-db-assistent_neso_assistent_v1_discounts_LBmF',
+export const NesoAssistentDiscounts = Heap.Table(
+  'neso_assistent_discounts_alpha2',
   {
     tid: Heap.Optional(
       Heap.String({ customMeta: { title: 'Tariff ID' }, searchable: { langs: ['ru', 'en'], embeddings: false } }),
@@ -26,10 +25,9 @@ export const TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1Di
   { customMeta: { title: 'Neso Assistant Discounts', description: 'Neso Assistant Discounts' } },
 )
 
-export default TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1DiscountsLBmF
+export default NesoAssistentDiscounts
 
-export type TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1DiscountsLBmFRow =
-  typeof TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1DiscountsLBmF.T
-export type TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1DiscountsLBmFRowJson =
-  typeof TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1DiscountsLBmF.JsonT
-
+export type NesoAssistentDiscountsRow =
+  typeof NesoAssistentDiscounts.T
+export type NesoAssistentDiscountsRowJson =
+  typeof NesoAssistentDiscounts.JsonT
