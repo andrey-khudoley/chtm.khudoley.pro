@@ -20,29 +20,18 @@
     "jsxFactory": "jsx",
     "jsxFragmentFactory": "jsx.Fragment",
     "strict": true,
-    "noUncheckedIndexedAccess": true,
-    "skipLibCheck": true,
-    "types": ["vue", "./_stage/neso-assistant/web/v1/types/vue-modules.d.ts"]
-  },
-  "vueCompilerOptions": {
-    "globalTypesPath": "./_stage/neso-assistant/web/v1/types/vue.d.ts",
-    "target": 3,
-    "strictTemplates": false,
-    "skipTemplateCodegen": false,
-    "nativeTags": ["template", "script", "style"]
+    "noUncheckedIndexedAccess": true
   },
   "include": [
     "**/*", ".**/*"
-, "_stage/neso-assistant/index.tsx"  ],
+  ],
   "exclude": [
     "./node_modules/**/*"
   ],
   "files": [
     "./node_modules/@app/types/globals.d.ts",
     "./node_modules/@app/types/modules.d.ts",
-    "./node_modules/@app/ui/global-jsx.d.ts",
-    "./_stage/neso-assistant/web/v1/types/vue.d.ts",
-    "./_stage/neso-assistant/web/v1/types/vue-modules.d.ts"
+    "./node_modules/@app/ui/global-jsx.d.ts"
 ],
   "references": [
     
