@@ -16,6 +16,9 @@ desktop.ini
 *.log
 *.cache
 
+# .gitignore для отображения в ветке выделенной из поддерева
+.gitignore
+
 # Папка _prod (исключаем)
 _prod/
 
