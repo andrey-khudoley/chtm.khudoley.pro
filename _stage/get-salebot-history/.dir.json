@@ -1,0 +1,6 @@
+{
+  "name": "Get Salebot History",
+  "params": {
+    "startWorkspaceAppearance": "ai"
+  }
+}
