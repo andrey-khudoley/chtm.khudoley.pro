@@ -1,8 +1,7 @@
-// This file is auto-generated via createOrUpdateHeapTableFile API and should not be edited manually
 import { Heap } from '@app/heap'
 
-export const TTemplatesNesoDbAssistentNesoAssistentV1CurrencyRatesJwGi = Heap.Table(
-  't_templates_neso-db-assistent_neso_assistent_v1_currency_rates_JwGi',
+export const NesoAssistentCurrencyRates = Heap.Table(
+  'neso_assistent_currency_rates_alpha2',
   {
     currency_name: Heap.Optional(
       Heap.String({ customMeta: { title: 'Название валюты' }, searchable: { langs: ['ru', 'en'], embeddings: false } }),
@@ -20,10 +19,9 @@ export const TTemplatesNesoDbAssistentNesoAssistentV1CurrencyRatesJwGi = Heap.Ta
   { customMeta: { title: 'Neso Assistant Currency Rates', description: 'Neso Assistant Currency Rates' } },
 )
 
-export default TTemplatesNesoDbAssistentNesoAssistentV1CurrencyRatesJwGi
+export default NesoAssistentCurrencyRates
 
-export type TTemplatesNesoDbAssistentNesoAssistentV1CurrencyRatesC7RRow =
-  typeof TTemplatesNesoDbAssistentNesoAssistentV1CurrencyRatesJwGi.T
-export type TTemplatesNesoDbAssistentNesoAssistentV1CurrencyRatesC7RRowJson =
-  typeof TTemplatesNesoDbAssistentNesoAssistentV1CurrencyRatesJwGi.JsonT
-
+export type NesoAssistentCurrencyRatesRow =
+  typeof NesoAssistentCurrencyRates.T
+export type NesoAssistentCurrencyRatesRowJson =
+  typeof NesoAssistentCurrencyRates.JsonT

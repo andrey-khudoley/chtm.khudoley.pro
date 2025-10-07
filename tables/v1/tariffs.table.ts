@@ -1,8 +1,7 @@
-// This file is auto-generated via createOrUpdateHeapTableFile API and should not be edited manually
 import { Heap } from '@app/heap'
 
-export const TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1TariffsqI9r = Heap.Table(
-  't_templates_neso-db-assistent_t_templates_neso-db-assistent_neso_assistent_v1_tariffs_qI9r',
+export const NesoAssistentTariffs = Heap.Table(
+  'neso_assistent_tariffs_alpha2',
   {
     tid: Heap.Optional(
       Heap.String({ customMeta: { title: 'Tariff ID' }, searchable: { langs: ['ru', 'en'], embeddings: true } }),
@@ -20,10 +19,9 @@ export const TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1Ta
   { customMeta: { title: 'Neso Assistant Tariffs', description: 'Neso Assistant Tariffs' } },
 )
 
-export default TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1TariffsqI9r
+export default NesoAssistentTariffs
 
-export type TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1TariffsA3xC1WRow =
-  typeof TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1TariffsqI9r.T
-export type TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1TariffsA3xC1WRowJson =
-  typeof TTemplatesNesoDbAssistentTTemplatesNesoDbAssistentNesoAssistentV1TariffsqI9r.JsonT
-
+export type NesoAssistentTariffsRow =
+  typeof NesoAssistentTariffs.T
+export type NesoAssistentTariffsRowJson =
+  typeof NesoAssistentTariffs.JsonT
