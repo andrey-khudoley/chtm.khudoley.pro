@@ -1,0 +1,7 @@
+{
+  "name": "Blog Assistant",
+  "params": {
+    "startWorkspaceAppearance": "ai",
+    "templatePath": "@templates/start/botan/templates/members/blog"
+  }
+}
