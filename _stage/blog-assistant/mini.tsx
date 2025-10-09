@@ -173,15 +173,23 @@ export const miniPostRoute = app.get('/:slug', async (ctx, req) => {
     where: { key: 'blogAuthor' },
     limit: 1
   })
-  const blogAuthor = authorSetting?.value || 'Название блога'
+  const [titleSetting] = await BlogSettingsTable.findAll(ctx, {
+    where: { key: 'blogTitle' },
+    limit: 1
+  })
+  const blogTitle = titleSetting?.value || 'Название блога'
+  const blogAuthor = authorSetting?.value || blogTitle
 
   const postExcerpt = post.excerpt || (post.content ? post.content.substring(0, 160) : '')
   const postImageUrl = post.coverImage ? getThumbnailUrl(ctx, post.coverImage, 1200, 630) : null
 
-  const host = ctx.req.headers?.host || 'localhost'
-  const baseUrl = `https://${host}`
-  const postUrl = `${baseUrl}${miniPostRoute({ slug: post.slug }).url()}`
-  const absoluteImageUrl = postImageUrl ? `${baseUrl}${postImageUrl}` : null
+  const relativePostPath = miniPostRoute({ slug: post.slug }).url()
+  const postUrl = ctx.account.url(relativePostPath)
+  const absoluteImageUrl = postImageUrl
+    ? /^https?:\/\//i.test(postImageUrl)
+      ? postImageUrl
+      : ctx.account.url(postImageUrl)
+    : null
 
   const contentHtml = markdownToHtml(post.content || '')
 
@@ -199,7 +207,7 @@ export const miniPostRoute = app.get('/:slug', async (ctx, req) => {
     <html lang="ru">
       <head>
         <meta charSet="utf-8" />
-        <title>{post.title} - Название блога</title>
+        <title>{post.title} - {blogTitle}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
         <meta name="description" content={postExcerpt || post.title} />
         <meta name="robots" content="index,follow" />
@@ -215,11 +223,17 @@ export const miniPostRoute = app.get('/:slug', async (ctx, req) => {
         {absoluteImageUrl && <meta property="og:image:height" content="630" />}
         <meta property="og:locale" content="ru_RU" />
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="Название блога" />
+        <meta property="og:site_name" content={blogTitle} />
         {blogAuthor && <meta property="article:author" content={blogAuthor} />}
         {post.publishedAt && <meta property="article:published_time" content={new Date(post.publishedAt).toISOString()} />}
         {post.updatedAt && <meta property="article:modified_time" content={new Date(post.updatedAt).toISOString()} />}
-        {post.tags?.split(',').map(tag => <meta property="article:tag" content={tag.trim()} />)}
+        {post.tags?.split(',').map(tag => {
+          const normalisedTag = tag.trim()
+          if (!normalisedTag) {
+            return null
+          }
+          return <meta key={normalisedTag} property="article:tag" content={normalisedTag} />
+        })}
 
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.title} />
