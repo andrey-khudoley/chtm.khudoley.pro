@@ -5,6 +5,50 @@ import PostsTable from './tables/posts.table'
 import { getThumbnailUrl } from '@app/storage'
 
 // Конвертация markdown в HTML, совместимую с Telegram Instant View
+type NotFoundResponse = {
+  notFound?: (() => unknown) | undefined
+  redirect?: ((location: string) => unknown) | undefined
+  status?: ((code: number) => unknown) | undefined
+}
+
+type ContextLike = {
+  resp?: NotFoundResponse | undefined
+}
+
+function respondNotFound(ctx: ContextLike) {
+  const resp = ctx.resp
+
+  if (!resp) {
+    return { statusCode: 404, body: 'Not Found' }
+  }
+
+  if (typeof resp.notFound === 'function') {
+    return resp.notFound()
+  }
+
+  if (typeof resp.redirect === 'function') {
+    return resp.redirect('/404')
+  }
+
+  if (typeof resp.status === 'function') {
+    const response = resp.status(404)
+    const withSend = response as { send?: ((body: string) => unknown) | undefined }
+    if (typeof withSend?.send === 'function') {
+      return withSend.send('Not Found')
+    }
+
+    const withEnd = response as { end?: ((body?: string) => unknown) | undefined }
+    if (typeof withEnd?.end === 'function') {
+      withEnd.end('Not Found')
+      return response
+    }
+
+    return response
+  }
+
+  return { statusCode: 404, body: 'Not Found' }
+}
+
 function markdownToHtml(content: string): string {
   if (!content) return ''
 
@@ -161,11 +205,11 @@ export const miniPostRoute = app.get('/:slug', async (ctx, req) => {
   })
 
   if (!post) {
-    return ctx.resp.notFound()
+    return respondNotFound(ctx)
   }
 
   if (!post.published && (!ctx.user || !ctx.user.is('Admin'))) {
-    return ctx.resp.notFound()
+    return respondNotFound(ctx)
   }
 
   const BlogSettingsTable = (await import('./tables/blogsettings.table')).default
